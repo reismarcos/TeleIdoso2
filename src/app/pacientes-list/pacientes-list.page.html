@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de Cuidadores</ion-title>
+    <ion-buttons id="btn-menu"  slot="start">
+      <ion-menu-button id="btn-menu" when="xl"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header><h3>Cuidadores</h3></ion-list-header>
+    <!-- <ion-card *ngFor="let paciente of lista | async"> -->
+    <ion-card *ngFor="let cuidador of lista">
+      <ion-card-content button (click)="visualizar(cuidador.key)">
+      <!-- <ion-card-content button [routerLink]="['/paciente-details', paciente.key]"> -->
+        <ion-item id="Paciente">
+          <ion-avatar item-start>
+              <img src="assets\images\person-icon.png">
+          </ion-avatar>
+          <h2>{{ cuidador.nome }}</h2>
+        </ion-item>     
+        <ion-row><p><b>Telefone:</b> {{ cuidador.telefone }}</p></ion-row>
+        <ion-row><p><b>Nome do Paciente:</b> {{ cuidador.paciente.nome }}</p></ion-row>
+        <ion-row><p><b>Data de Nascimento do Paciente:</b> {{ cuidador.paciente.dataNascimento }}</p></ion-row>
+        <ion-row><p><b>Instituição do Paciente:</b> {{ cuidador.paciente.instituicao }}</ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  
+  <ion-button expand= "block" (click)="goToFormsList()">Formulários</ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" type="button" (click)="goToCadastroPacientes()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

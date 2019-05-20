@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Teleidoso
+    </ion-title>
+    <ion-buttons id="btn-menu"  slot="start">
+      <ion-menu-button id="btn-menu" ></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content color="light" padding>
+  <div *ngIf="user != null" class="myContent">
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col><ion-img class="logo" src="/assets/images/logo_teleidoso.png"></ion-img></ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+        <ion-col>
+          <ion-button fill="outline" (click)="addPaciente()">
+              <ion-icon name="add-circle-outline"></ion-icon>
+            Adicionar Paciente
+          </ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+        <ion-col>
+          <ion-button fill="outline" (click)="addForm()">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            Preencher Formulário
+          </ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+  </div>
+
+  <div *ngIf="user == null" class="loginForm">
+    <h1 color="dark" text-center>Login / Cadastro</h1>
+
+    <ion-item>
+        <ion-label color="primary" position="floating">
+          <ion-icon color="primary" name='person'></ion-icon> Usuário
+        </ion-label>
+        <ion-input type="text" [(ngModel)] = "usuario"></ion-input>
+        <!-- <ion-input type="text" #usuario></ion-input> -->
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" position="floating">
+        <ion-icon color="primary" name='lock'></ion-icon> Senhas
+      </ion-label>
+      <ion-input type="password" [(ngModel)] = "senha"></ion-input>
+      <!-- <ion-input type="password" #senha></ion-input> -->
+    </ion-item>
+    <br>
+    
+      <ion-button color="tertiary" class="btnLogin" expand= "block" (click)="LoginComEmail(usuario, senha)" >Login</ion-button>
+      <ion-button color="tertiary" class="btnLogin" expand="block" (click)="cadastrarUsuario(usuario, senha)" >Cadastrar</ion-button>
+
+      <ion-button expand="block"  fill="clear" (click)="resetPassword(usuario)">Esqueci minha Senha</ion-button>        
+  </div>
+</ion-content>
+

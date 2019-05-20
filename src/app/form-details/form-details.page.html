@@ -1,0 +1,312 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+
+    
+    <button (click)="setQuestion(0)">INFORMAÇÕES</button>
+    <button (click)="setQuestion(1)">I - ESTADO DE SAÚDE DO IDOSO</button>
+    <button (click)="setQuestion(2)">II- CARACTERÍTICAS DO AMBIENTE DOMÉSTICO</button>
+    <button (click)="setQuestion(3)">III– ESTADO DE SAÚDE DO CUIDADOR</button>
+    <button (click)="setQuestion(4)">IV- RELACIONAMENTO ENTRE O CUIDADOR E O RECEPTOR DE CUIDADOS</button>
+    <button (click)="setQuestion(5)">V- PROCESSOS FAMILIARES</button>
+    </ion-row>
+    <ion-buttons id="btn-menu"  slot="start">
+      <ion-menu-button id="btn-menu" when="xl"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" padding>
+  <div class="myForm">
+
+    <!----------------------------INFOS------------------------------>
+    <div *ngIf="question == 0">
+      <h1 text-center>INSTRUMENTO DE TELEMONITORAMENTO - CUIDADOR DE PESSOAS COM DEMÊNCIA</h1>
+      <ion-list>
+          <div class="question">
+              <p><ion-icon color="primary" name="person"></ion-icon> Cuidador: {{formulario?.cuidador}} </p>
+          </div>
+
+          <div class="question">
+              <p type="date"><ion-icon color="primary" name="calendar"></ion-icon>Data: {{formulario?.data | date:'dd/MM/yyyy'}}</p>
+          </div>
+      </ion-list>
+    </div>
+
+    <!----------------------------PARTE I------------------------------>
+    <div *ngIf="question == 1">
+      <h1 text-center>I - ESTADO DE SAÚDE DO IDOSO</h1>
+      <ion-list>
+        <div class="question">
+          <p>1.	Você percebe um aumento na necessidade de cuidado ou uma maior dependência por parte do idoso?</p>
+          <p class="resp">{{formulario?.I1}}</p>
+        </div>
+
+        <div class="question">
+          <p>2.	O idoso precisa de ajuda para a realização do autocuidado?</p>
+          <p class="resp">{{formulario?.I2}}</p>
+          <p>2.1.	Se sim, para qual tarefa? </p>
+          <p class="resp">{{formulario?.I2_1}}</p>
+          <p>2.2.	Qual o grau de dependência do idoso? </p>
+          <p class="resp">{{formulario?.I2_2}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IR1}}</p>
+        </div>
+
+        <div class="question">
+          <p>3.	O idoso consegue realizar algumas atividades domésticas?</p>
+          <p class="resp">{{formulario?.I3}}</p>
+        </div>
+
+        <div class="question">
+          <p>4.	O idoso toma os medicamentos de rotina na dose e horário correto?</p>
+          <p class="resp">{{formulario?.I4}}</p>
+        </div>       
+        
+        <div class="question">
+          <p>5.	O idoso desenvolveu algum comportamento diferente na última semana? </p>
+          <p class="resp">{{formulario?.I5}}</p>
+        </div>       
+
+        <div class="question">
+          <p>6.	Você percebeu uma maior gravidade da doença ou alguma cronicidade da doença na última semana?</p>
+          <p class="resp">{{formulario?.I6}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IR2}}</p>
+        </div>
+        
+        <div class="question">
+          <p>7.	Você recebeu explicações sobre a doença do idoso?</p>
+          <p class="resp">{{formulario?.I7}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IR3}}</p>
+        </div>
+
+      </ion-list>
+    </div>
+
+    <!----------------------------PARTE II------------------------------>
+    <div *ngIf="question == 2">
+      <h1 text-center>II- CARACTERÍTICAS DO AMBIENTE DOMÉSTICO </h1>
+      <ion-list>
+        <div class="question">
+          <p>1.	A casa onde o idoso reside possui saneamento básico?</p>
+          <p class="resp">{{formulario?.II1}}</p>
+        </div>
+    
+        <div class="question">
+          <p>2.	A casa onde o idoso reside possui luz elétrica?</p>
+          <p class="resp">{{formulario?.II2}}</p>
+        </div>
+
+        <div class="question">
+          <p>3.	A casa onde o idoso reside é bem arejado com janelas, ventilador ou ar condicionado?</p>
+          <p class="resp">{{formulario?.II3}}</p>
+        </div>
+
+        <div class="question">
+          <p>4.	O idoso possui um quarto só para ele?</p>
+          <p class="resp">{{formulario?.II4}}</p>
+        </div>
+
+        <div class="question">
+          <p>5.	A casa onde o idoso reside possui barras no banheiro? </p>
+          <p class="resp">{{formulario?.II5}}</p>
+        </div>
+
+        <div class="question">
+          <p>6.	A casa onde o idoso reside possui tapetes pelo caminho?</p>
+          <p class="resp">{{formulario?.II6}}</p>
+        </div>
+
+        <div class="question">
+          <p>7.	A casa onde o idoso reside possui móveis com quinas boleadas?</p>
+          <p class="resp">{{formulario?.II7}}</p>
+        </div>
+
+        <div class="question">
+          <p>8.	A casa onde o idoso reside possui animal de estimação?</p>
+          <p class="resp">{{formulario?.II8}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIR1}}</p>
+        </div>
+      
+      </ion-list>
+    </div>
+
+    <!----------------------------PARTE III------------------------------>
+    <div *ngIf="question == 3">
+      <h1 text-center>III– ESTADO DE SAÚDE DO CUIDADOR </h1>
+      <ion-list>
+        <div class="question">
+          <p>1.	O(a) senhor(a) tem cuidado da sua saúde?</p>
+          <p class="resp">{{formulario?.III1}}</p>
+          <p>1.1.	Possui algum problema de saúde ou doença crônica? </p>
+          <p class="resp">{{formulario?.III1_1}}</p>
+        </div>
+
+        <div class="question">
+          <p>2.	O(a) senhor(a) faz uso de algum medicamento?</p>
+          <p class="resp">{{formulario?.III2}}</p>
+          <p>2.1.	Se sim, qual?  </p>
+          <p class="resp">{{formulario?.III2_1}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR1}}</p>
+        </div>
+
+        <div class="question">
+          <p>3.	O(a) senhor(a) faz uso de alguma droga?</p>
+          <p class="resp">{{formulario?.III3}}</p>
+          <p>3.1.	Se sim, qual?</p>
+          <p class="resp">{{formulario?.III3_1}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR2}}</p>
+        </div>
+
+        <div class="question">
+          <p>4.	Como está sua alimentação?</p>
+          <p class="resp">{{formulario?.III4}}</p>
+          <p>4.1.	Realiza quantas refeições por dia?</p>
+          <p class="resp">{{formulario?.III4_1}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR3}}</p>
+        </div>       
+        
+        <div class="question">
+          <p>5.	Pensa que o seu estado de saúde tem piorado por estar cuidando do seu familiar?</p>
+          <p class="resp">{{formulario?.III5}}</p>
+        </div>       
+
+        <div class="question">
+          <p>6.	Você possui a sensação de que tudo ao seu redor está ficando pior?</p>
+          <p class="resp">{{formulario?.III6}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR4}}</p>
+        </div>
+        
+        <div class="question">
+          <p>7.	Como está o dia a dia do cuidado?  </p>
+          <p class="resp">{{formulario?.III7}}</p>
+          <p>7.1. Por quê o Senhor diz isso:</p>
+          <p class="resp">{{formulario?.III7_1}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR5}}</p>
+        </div>
+        
+        <div class="question">
+          <p>8.	Cuidar do seu familiar tem exigido um grande esforço físico?</p>
+          <p class="resp">{{formulario?.III8}}</p>
+        </div> 
+        
+        <div class="question">
+          <p>9.	Como você tem se sentido ultimamente, ao tomar conta do idoso? </p>
+          <p class="resp">{{formulario?.III9}}</p>
+          <p>9.1.	Com qual frequência?</p>
+          <p class="resp">{{formulario?.III9_1}}</p>
+          <p>9.2.	Você sente que seu humor tem mudado com frequência?</p>
+          <p class="resp">{{formulario?.III9_2}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR6}}</p>
+        </div>
+
+        <div class="question">
+          <p>10.	Você tem se sentido sem energia, fadigado?</p>
+          <p class="resp">{{formulario?.III10}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR7}}</p>
+        </div>
+
+        <div class="question">
+          <p>11.	O(a) senhor(a) tem dormido bem? </p>
+          <p class="resp">{{formulario?.III11}}</p>
+          <p>11.1.	Quantas horas por noite?</p>
+          <p class="resp">{{formulario?.III11_1}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR8}}</p>
+        </div>
+
+        <div class="question">
+          <p>12.	Você tem atividades de lazer? </p>
+          <p class="resp">{{formulario?.III12}}</p>
+          <p>12.1.	O que você costuma fazer em suas horas de lazer?</p>
+          <p class="resp">{{formulario?.III12_1}}</p>
+          <p>12.2.	Você deixou de sair com familiares ou amigos nos últimos 3 meses?</p>
+          <p class="resp">{{formulario?.III12_2}}</p>
+        </div>
+
+        <div class="question">
+          <p>13.	Sente vontade de sair da situação e que se encontra?</p>
+          <p class="resp">{{formulario?.III13}}</p>
+          <p>INTERVENÇÃO</p>
+          <p class="resp">{{formulario?.IIIR9}}</p>
+        </div>
+
+        </ion-list>
+      </div>
+
+    <!----------------------------PARTE IV------------------------------>
+    <div *ngIf="question == 4">
+        <h1 text-center>IV- RELACIONAMENTO ENTRE O CUIDADOR E O RECEPTOR DE CUIDADOS</h1>
+        <ion-list>
+          <div class="question">
+            <p>1.	Você sente dificuldade em assistir ao idoso passar pela doença?</p>
+            <p class="resp">{{formulario?.IV1}}</p>
+            <p>Se sim,por quê?</p>
+            <p class="resp">{{formulario?.IV1_1}}</p>
+          </div>
+  
+          <div class="question">
+            <p>2.	Você consegue manter uma conversa com o idoso?</p>
+            <p class="resp">{{formulario?.IV2}}</p>
+          </div>
+  
+          <div class="question">
+            <p>3.	Você acha que seu relacionamento com o idoso mudou nos últimos 3 meses?</p>
+            <p class="resp">{{formulario?.IV3}}</p>
+            <p>Se sim,por quê?</p>
+            <p class="resp">{{formulario?.IV3_1}}</p>
+          </div>
+  
+          <div class="question">
+            <p>4.	Você acredita que o idoso esteja se sentindo bem cuidado? </p>
+            <p class="resp">{{formulario?.IV4}}</p>
+            <p>Por quê?</p>
+            <p class="resp">{{formulario?.IV4_1}}</p>
+            <p>INTERNVENÇÃO</p>
+            <p class="resp">{{formulario?.IVR1}}</p>
+          </div>       
+          
+          <div class="question">
+            <p>5.	Durante o dia há xingamentos, brigas, discussões (violência para com o idoso)?</p>
+            <p class="resp">{{formulario?.IV5}}</p>
+            <p>INTERNVENÇÃO</p>
+            <p class="resp">{{formulario?.IVR2}}</p>
+          </div>       
+  
+        </ion-list>
+      </div>
+
+    <!----------------------------PARTE V------------------------------>
+    <div *ngIf="question == 5">
+        <h1 text-center>V- PROCESSOS FAMILIARES</h1>
+        <ion-list>
+          <div class="question">
+            <p>1.	Você possui ajuda de outros membros para o cuidado com o idoso ou exerce o cuidado sozinho por 24h diárias?</p>
+            <p class="resp">{{formulario?.V1}}</p>
+          </div>
+  
+          <div class="question">
+            <p>2.	Você se sente preocupado com algum membro da família que não seja o idoso cuidado?</p>
+            <p class="resp">{{formulario?.V2}}</p>
+            <p>Por quê?</p>
+            <p class="resp">{{formulario?.V2_1}}</p>
+            <p>INTERNVENÇÃO</p>
+            <p class="resp">{{formulario?.VR1}}</p>
+          </div>
+  
+        </ion-list>
+      </div>
+
+      
+  </div>
+</ion-content>

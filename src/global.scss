@@ -1,0 +1,27 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.myForm{
+    padding-left:60px;
+    padding-right:60px;
+    padding-top:20px;
+    padding-bottom:70px;
+    font-family: 'Roboto', sans-serif !important;
+    border-radius: 5px;
+    border: solid 2px #f2f2f2;
+    margin-left:70px;
+    margin-right:70px;
+    margin-top:40px;
+    background:#fff !important;
+}
