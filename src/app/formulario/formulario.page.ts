@@ -1,8 +1,9 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormularioService, Formulario } from '../services/formulario.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PacienteService } from '../services/paciente.service';
 import { Paciente } from '../models/paciente/paciente.model';
+import { Observable } from 'rxjs'
 import { AlertController } from '@ionic/angular';
 import { Cuidador } from '../models/cuidador/cuidador.model';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
@@ -15,11 +16,14 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 export class FormularioPage implements OnInit {
   
   lista: Cuidador[];
+  cuidador: string;
+  objCuidador: Cuidador;
   question = 0;
   showInter = 0;
   showOptions = 0;
   validateMsg: string;
   titulo = 'INSTRUMENTO DE TELEMONITORAMENTO - CUIDADOR DE PESSOAS COM DEMÊNCIA';
+  formularioKey = null;
   
   //Variaveis para checkbox
   I2_1A:boolean; I2_1B:boolean; I2_1C:boolean; I2_1D:boolean; I2_1E:boolean; I2_1F:boolean; I2_1i;
@@ -46,6 +50,8 @@ export class FormularioPage implements OnInit {
   VR1_A:boolean; VR1_B:boolean;
 
   formulario: Formulario = {
+    tipoLigacao: 'Primeira Ligação',
+    numeroLigacao: 0,
     cuidador: '',
     data: '',
     // Variaveis relacionadas a parte I
@@ -62,7 +68,6 @@ export class FormularioPage implements OnInit {
     IR2: [],
     I7: '',
     IR3: [],
-    
     // Variaveis relacionadas a parte II
     II1: '',
     II2: '',
@@ -130,7 +135,7 @@ export class FormularioPage implements OnInit {
 
   formularioId = null;
 
-  constructor(private router: Router, private formularioService: FormularioService, private cuidadoresList: PacienteService, private AlertController: AlertController){
+  constructor(private pacienteService: PacienteService, private route: ActivatedRoute, private router: Router, private formularioService: FormularioService, private cuidadoresList: PacienteService, private AlertController: AlertController){
     console.log(this.showOptions);
     this.formulario.data = new Date().toISOString();
     this.validateMsg = "";
@@ -140,6 +145,15 @@ export class FormularioPage implements OnInit {
     this.cuidadoresList.getAll().subscribe(res => {
       this.lista = res;
     })
+
+    this.formularioKey = this.route.snapshot.params['id'];
+    if(this.formularioKey){
+      this.formularioService.getFormulario(this.formularioKey).subscribe(res =>{
+        this.formulario = res;
+      });
+    }
+
+
   }
 
   public setQuestion(q){
@@ -178,11 +192,11 @@ export class FormularioPage implements OnInit {
 
   }
 
-  public nextQuestion(){
-    if (this.showInter == 1){
+  public nextQuestion() {
+    if (this.showInter === 1){
       this.showInter = 0;
     }
-    if (this.question+1 < 37){
+    if (this.question + 1 < 37){
       this.question ++;
       this.changeTitulo();
     }
@@ -192,7 +206,6 @@ export class FormularioPage implements OnInit {
     }
 
   }
- 
  
   public async saveForm(){
     const alert = await this.AlertController.create({
@@ -205,10 +218,15 @@ export class FormularioPage implements OnInit {
         {
           text: 'Confirmar',
           handler: () => {
-          //this.noteService.removeNote(this.note);
           this.checkboxTraslate();
-          this.formularioService.addFormulario(this.formulario).then(ref => {
-          this.router.navigate(['/form-list'])
+          this.cuidadoresList.getPaciente(this.cuidador).subscribe(res =>{
+            this.objCuidador = res;
+          });
+          console.log(this.objCuidador);
+          this.formulario.cuidador = this.objCuidador.nome;
+          console.log(this.formulario.cuidador);
+          this.pacienteService.addFormulario(this.cuidador, this.formulario).then(ref => {
+          this.router.navigate(['/home'])
           })
           }
           }

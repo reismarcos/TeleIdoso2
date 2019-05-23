@@ -15,41 +15,17 @@ export class CadastroPacientesPage implements OnInit {
     nome: '',
     sexo: '',
     dataNascimento: '',
-    telefone: undefined,
+    telefone: '',
     endereco: '',
-    paciente:{
+    paciente: {
       nome: '',
       sexo: '',
       dataNascimento: '',
-      telefone: undefined,
+      telefone: '',
       endereco: '',
       instituicao: ''
     }
   }
-
-  // paciente: Paciente = {
-  //   nome: '',
-  //   sexo: '',
-  //   dataNascimento: '',
-  //   telefone: undefined,
-  //   endereco: '',
-  //   instituicao: '',
-  //   cuidador:{
-  //     nome: '',
-  //     sexo: '',
-  //     dataNascimento: '',
-  //     telefone: undefined,
-  //     endereco: ''
-  //   }
-  // }
-
-  // cuidador: Cuidador = {
-  //   nome: '',
-  //   sexo: '',
-  //   dataNascimento: '',
-  //   telefone: undefined,
-  //   endereco: ''
-  // }
 
   constructor(private router: Router, private cuidadoresList: PacienteService) { }
 

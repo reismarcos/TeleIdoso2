@@ -14,10 +14,9 @@ export class PacientesListPage implements OnInit {
 
   // lista: Observable<Paciente[]>
   lista: Cuidador[];
-  
   constructor(private router: Router, private cuidadoresList: PacienteService) {
-    // this.lista = this.pacientesList.getAll().valueChanges();
-    // console.log(this.lista);
+    //this.lista = this.cuidadoresList.getAll().valueChanges();
+    console.log(this.lista);
    }
 
   ngOnInit() {

@@ -53,15 +53,24 @@
       
         <ion-item>
           <ion-label>Cuidador:</ion-label>
-          <ion-select [(ngModel)]='formulario.cuidador' >
-            <ion-select-option *ngFor="let cuidador of lista" value="{{cuidador.nome}}">{{ cuidador.nome }}</ion-select-option>
+          <ion-select [(ngModel)]='cuidador'>
+            <ion-select-option *ngFor="let cuidador of lista" value="{{cuidador.key}}">{{ cuidador?.nome }}</ion-select-option>
           </ion-select>
         </ion-item>
+
         <br><br>
         <ion-item>
           <ion-label >Data:</ion-label>
           <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="formulario.data"></ion-datetime>
         </ion-item>
+        
+        <br><br>
+        <ion-item>
+          <ion-label>Numero da ligação:</ion-label>
+          <ion-input type="number" [(ngModel)]="formulario.numeroLigacao"></ion-input>
+        </ion-item>
+        
+
       
       </ion-list> 
 

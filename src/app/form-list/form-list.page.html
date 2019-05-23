@@ -14,7 +14,7 @@
 
     <ion-list class="myForm">
       <div text-center color="primary"><h1 color="primary">Formulários</h1></div>
-      <ion-item *ngFor="let form of listaForms" button (click)="goToDetails(form.key)">
+      <ion-item *ngFor="let form of listaForms" button (click)="goToEdit(form.key)">
         <ion-icon color="primary" name="list-box"></ion-icon>
         <ion-label color="primary">
             Cuidador: {{ form.cuidador }}

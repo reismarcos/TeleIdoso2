@@ -10,6 +10,8 @@ const routes: Routes = [
   { path: 'form-list', loadChildren: './form-list/form-list.module#FormListPageModule' },
   { path: 'formulario', loadChildren: './formulario/formulario.module#FormularioPageModule' },
   { path: 'form-details/:id', loadChildren: './form-details/form-details.module#FormDetailsPageModule' },
+  { path: 'formulario/:id', loadChildren: './formulario/formulario.module#FormularioPageModule' },
+
 
 ];
 

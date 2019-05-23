@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators';
+import { Cuidador } from '../models/cuidador/cuidador.model';
 
 export interface Formulario {
   // I - V >>> RELACIONADO A PERGUNTAS
@@ -9,13 +10,14 @@ export interface Formulario {
   // ION-RADIO >>> Salva como String
   // CHECKBOX >>> Salva como Array
   // INPUT >>> Salva como String
-
+  tipoLigacao: string;
+  numeroLigacao: number;
   cuidador: String;
   data: any;
   // Variaveis relacionadas a parte I
   I1: String;
   I2: String;
-  I2_1:String[];
+  I2_1: String[];
   I2_2: String;
   IR1: String[];
   I3: String;
@@ -97,12 +99,23 @@ export interface Formulario {
   providedIn: 'root'
 })
 export class FormularioService {
+  public db: AngularFirestore;
+  public formulariosCollection: AngularFirestoreCollection <Formulario>;
+  public formularios: Observable<Formulario[]>;
 
-  private formulariosCollection: AngularFirestoreCollection <Formulario>;
-  private formularios: Observable<Formulario[]>;
+  constructor(db: AngularFirestore, cuidadorKey: string) {
+    this.db = db;
+   }
 
-  constructor(db: AngularFirestore) {
-    this.formulariosCollection = db.collection<Formulario>('formularios');
+  public async addFormulario(formulario: Formulario, cuidadorKey: string){
+    this.formulariosCollection = this.db.collection('cuidadores').doc(cuidadorKey).collection('formularios');
+    const id = this.formulariosCollection.ref.doc().id;
+    formulario['key'] = id;
+    return this.db.collection('cuidadores').doc(cuidadorKey).collection('formularios').add(formulario);
+  }
+  
+  public getFormularios(cuidadorKey){
+    this.formulariosCollection = this.db.collection('cuidadores').doc(cuidadorKey).collection('formularios');
     this.formularios = this.formulariosCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -112,16 +125,7 @@ export class FormularioService {
         });
       })
     );
-   }
-
-  public async addFormulario(formulario: Formulario){
-    let id = await this.formulariosCollection.ref.doc().id;
-    formulario['key'] = id;
-    return this.formulariosCollection.doc(id).set(formulario);
-  }
-
-  public getFormularios(){
-    return this.formularios;
+   
   }
 
   public getFormulario(id): Observable<any>{

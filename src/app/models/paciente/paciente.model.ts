@@ -5,7 +5,7 @@ export interface Paciente{
     nome: string;
     sexo: string;
     dataNascimento: string;
-    telefone: number;
+    telefone: string;
     endereco: string;
     instituicao: string;
 }

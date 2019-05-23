@@ -13,11 +13,13 @@ export class FormListPage implements OnInit {
 
   constructor(private router: Router, private formulariosList: FormularioService) { }
 
+  
   ngOnInit() {
-    this.formulariosList.getFormularios().subscribe(res => {
-      this.listaForms = res;
-    })
+    //this.formulariosList.getFormularios().subscribe(res => {
+      //this.listaForms = res;
+    //})
   }
+  
 
   public goToFormulario(){
     this.router.navigate(['/formulario']);
@@ -25,6 +27,10 @@ export class FormListPage implements OnInit {
 
   public goToDetails(id){
     this.router.navigate(['/form-details', id]);
+  }
+
+  public goToEdit(id){
+    this.router.navigate(['/formulario', id]);
   }
 
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Paciente } from '../models/paciente/paciente.model';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators';
@@ -31,8 +30,6 @@ export class PacienteService {
 
   }
 
-  //private pacientesList: Observable<Paciente[]>;
-
   public getAll(){
     return this.cuidadoresList;
   }
@@ -41,7 +38,14 @@ export class PacienteService {
     let id = await this.cuidadoresCollection.ref.doc().id;
     cuidador['key'] = id;
     return this.cuidadoresCollection.doc(id).set(cuidador);
-    // return this.pacientesCollection.add(paciente);
+  }
+
+  public async addFormulario(cuidadorKey: string, formulario: any){
+    let id = await this.cuidadoresCollection.doc(cuidadorKey).collection('Formulario').ref.doc().id;
+    formulario['key'] = id;
+    let cuidador = this.cuidadoresCollection.doc(cuidadorKey).ref.get();
+    console.log(cuidador);
+    return this.cuidadoresCollection.doc(cuidadorKey).collection('Formulario').doc(id).set(formulario);
   }
 
   public getPaciente(id): Observable<any>{

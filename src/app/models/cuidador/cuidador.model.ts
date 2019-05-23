@@ -5,7 +5,7 @@ export interface Cuidador{
     nome: string;
     sexo: string;
     dataNascimento: string;
-    telefone: number;
+    telefone: string;
     endereco: string;
     paciente: Paciente;
 }
