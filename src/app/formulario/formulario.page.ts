@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PacienteService } from '../services/paciente.service';
 import { Paciente } from '../models/paciente/paciente.model';
 import { Observable } from 'rxjs'
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Cuidador } from '../models/cuidador/cuidador.model';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
@@ -135,26 +135,34 @@ export class FormularioPage implements OnInit {
 
   formularioId = null;
 
-  constructor(private pacienteService: PacienteService, private route: ActivatedRoute, private router: Router, private formularioService: FormularioService, private cuidadoresList: PacienteService, private AlertController: AlertController){
+  constructor(private loadingController: LoadingController, private pacienteService: PacienteService, private route: ActivatedRoute, private router: Router, private formularioService: FormularioService, private cuidadoresList: PacienteService, private AlertController: AlertController){
     console.log(this.showOptions);
     this.formulario.data = new Date().toISOString();
     this.validateMsg = "";
   }
 
   ngOnInit() {
-    this.cuidadoresList.getAll().subscribe(res => {
-      this.lista = res;
-    })
-
+    this.loadCuidadores();
     this.formularioKey = this.route.snapshot.params['id'];
     if(this.formularioKey){
       this.formularioService.getFormulario(this.formularioKey).subscribe(res =>{
         this.formulario = res;
       });
     }
-
-
   }
+
+  async loadCuidadores(){
+    const loading = await this.loadingController.create({
+      message: 'Carregando cuidadores'
+    });
+
+    await loading.present();
+    this.cuidadoresList.getAll().subscribe(res => {
+      loading.dismiss();
+      this.lista = res;
+    })
+  }
+  
 
   public setQuestion(q){
     if (this.showInter == 1){
@@ -219,13 +227,7 @@ export class FormularioPage implements OnInit {
           text: 'Confirmar',
           handler: () => {
           this.checkboxTraslate();
-          this.cuidadoresList.getPaciente(this.cuidador).subscribe(res =>{
-            this.objCuidador = res;
-          });
-          console.log(this.objCuidador);
-          this.formulario.cuidador = this.objCuidador.nome;
-          console.log(this.formulario.cuidador);
-          this.pacienteService.addFormulario(this.cuidador, this.formulario).then(ref => {
+          this.formularioService.addFormulario(this.formulario).then(ref => {
           this.router.navigate(['/home'])
           })
           }

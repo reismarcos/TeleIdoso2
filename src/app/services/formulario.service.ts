@@ -99,23 +99,12 @@ export interface Formulario {
   providedIn: 'root'
 })
 export class FormularioService {
-  public db: AngularFirestore;
-  public formulariosCollection: AngularFirestoreCollection <Formulario>;
-  public formularios: Observable<Formulario[]>;
 
-  constructor(db: AngularFirestore, cuidadorKey: string) {
-    this.db = db;
-   }
+  private formulariosCollection: AngularFirestoreCollection <Formulario>;
+  private formularios: Observable<Formulario[]>;
 
-  public async addFormulario(formulario: Formulario, cuidadorKey: string){
-    this.formulariosCollection = this.db.collection('cuidadores').doc(cuidadorKey).collection('formularios');
-    const id = this.formulariosCollection.ref.doc().id;
-    formulario['key'] = id;
-    return this.db.collection('cuidadores').doc(cuidadorKey).collection('formularios').add(formulario);
-  }
-  
-  public getFormularios(cuidadorKey){
-    this.formulariosCollection = this.db.collection('cuidadores').doc(cuidadorKey).collection('formularios');
+  constructor(db: AngularFirestore) {
+    this.formulariosCollection = db.collection<Formulario>('formularios');
     this.formularios = this.formulariosCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -125,7 +114,17 @@ export class FormularioService {
         });
       })
     );
+   }
+
    
+   public async addFormulario(formulario: Formulario){
+    const id = await this.formulariosCollection.ref.doc().id;
+    formulario['key'] = id;
+    return this.formulariosCollection.doc(id).set(formulario);
+  }
+  
+  public getFormularios(){
+    return this.formularios;
   }
 
   public getFormulario(id): Observable<any>{

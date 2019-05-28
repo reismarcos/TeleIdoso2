@@ -7,5 +7,8 @@ export interface Cuidador{
     dataNascimento: string;
     telefone: string;
     endereco: string;
+    tipoCuidador: string;
+    parentesco: string;
     paciente: Paciente;
+    fag: string; //Frequenta algum grupo
 }

@@ -22,14 +22,23 @@
     <!----------------------------INFOS------------------------------>
     <div *ngIf="question == 0">
       <h1 text-center>INSTRUMENTO DE TELEMONITORAMENTO - CUIDADOR DE PESSOAS COM DEMÊNCIA</h1>
+      <h3>{{formulario?.tipoLigacao}}</h3>
       <ion-list>
-          <div class="question">
-              <p><ion-icon color="primary" name="person"></ion-icon> Cuidador: {{formulario?.cuidador}} </p>
-          </div>
+          <ion-item>
+            <ion-label position="floating">Nome:</ion-label>
+            <ion-input [(ngModel)] = "formulario.cuidador"></ion-input>    
+          </ion-item>
 
-          <div class="question">
-              <p type="date"><ion-icon color="primary" name="calendar"></ion-icon>Data: {{formulario?.data | date:'dd/MM/yyyy'}}</p>
-          </div>
+          <ion-item>
+            <ion-label position="floating">Data:</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="formulario.data"></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Numero da ligação:</ion-label>
+            <ion-input type="number" [(ngModel)]="formulario.numeroLigacao"></ion-input>
+          </ion-item>
+
       </ion-list>
     </div>
 
@@ -39,47 +48,52 @@
       <ion-list>
         <div class="question">
           <p>1.	Você percebe um aumento na necessidade de cuidado ou uma maior dependência por parte do idoso?</p>
-          <p class="resp">{{formulario?.I1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I1"></ion-input>
         </div>
 
         <div class="question">
           <p>2.	O idoso precisa de ajuda para a realização do autocuidado?</p>
-          <p class="resp">{{formulario?.I2}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I2"></ion-input>
           <p>2.1.	Se sim, para qual tarefa? </p>
-          <p class="resp">{{formulario?.I2_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I2_1"></ion-input>
           <p>2.2.	Qual o grau de dependência do idoso? </p>
-          <p class="resp">{{formulario?.I2_2}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I2_2"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IR1}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IR1"></ion-textarea>
         </div>
 
         <div class="question">
           <p>3.	O idoso consegue realizar algumas atividades domésticas?</p>
-          <p class="resp">{{formulario?.I3}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I3"></ion-input>
         </div>
 
         <div class="question">
           <p>4.	O idoso toma os medicamentos de rotina na dose e horário correto?</p>
-          <p class="resp">{{formulario?.I4}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I4"></ion-input>
         </div>       
         
         <div class="question">
           <p>5.	O idoso desenvolveu algum comportamento diferente na última semana? </p>
-          <p class="resp">{{formulario?.I5}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I5"></ion-input>
+        </div>       
+
+        <div class="question">
+          <p>5.1	Qual? </p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I5_1"></ion-input>
         </div>       
 
         <div class="question">
           <p>6.	Você percebeu uma maior gravidade da doença ou alguma cronicidade da doença na última semana?</p>
-          <p class="resp">{{formulario?.I6}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I6"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IR2}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IR2"></ion-textarea>
         </div>
         
         <div class="question">
           <p>7.	Você recebeu explicações sobre a doença do idoso?</p>
-          <p class="resp">{{formulario?.I7}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.I7"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IR3}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IR3"></ion-textarea>
         </div>
 
       </ion-list>
@@ -91,44 +105,45 @@
       <ion-list>
         <div class="question">
           <p>1.	A casa onde o idoso reside possui saneamento básico?</p>
-          <p class="resp">{{formulario?.II1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.II1"></ion-input>
         </div>
     
         <div class="question">
           <p>2.	A casa onde o idoso reside possui luz elétrica?</p>
-          <p class="resp">{{formulario?.II2}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.II2"></ion-input>
         </div>
 
         <div class="question">
           <p>3.	A casa onde o idoso reside é bem arejado com janelas, ventilador ou ar condicionado?</p>
-          <p class="resp">{{formulario?.II3}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.II3"></ion-input>
         </div>
 
         <div class="question">
           <p>4.	O idoso possui um quarto só para ele?</p>
-          <p class="resp">{{formulario?.II4}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.II4"></ion-input>
         </div>
 
         <div class="question">
           <p>5.	A casa onde o idoso reside possui barras no banheiro? </p>
-          <p class="resp">{{formulario?.II5}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.II5"></ion-input>
         </div>
+
 
         <div class="question">
           <p>6.	A casa onde o idoso reside possui tapetes pelo caminho?</p>
-          <p class="resp">{{formulario?.II6}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.II6"></ion-input>
         </div>
 
         <div class="question">
           <p>7.	A casa onde o idoso reside possui móveis com quinas boleadas?</p>
-          <p class="resp">{{formulario?.II7}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.II7"></ion-input>
         </div>
 
         <div class="question">
           <p>8.	A casa onde o idoso reside possui animal de estimação?</p>
-          <p class="resp">{{formulario?.II8}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.II8"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIR1}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIR1"></ion-textarea>
         </div>
       
       </ion-list>
@@ -140,105 +155,105 @@
       <ion-list>
         <div class="question">
           <p>1.	O(a) senhor(a) tem cuidado da sua saúde?</p>
-          <p class="resp">{{formulario?.III1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III1"></ion-input>
           <p>1.1.	Possui algum problema de saúde ou doença crônica? </p>
-          <p class="resp">{{formulario?.III1_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III1_1"></ion-input>
         </div>
 
         <div class="question">
           <p>2.	O(a) senhor(a) faz uso de algum medicamento?</p>
-          <p class="resp">{{formulario?.III2}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III2"></ion-input>
           <p>2.1.	Se sim, qual?  </p>
-          <p class="resp">{{formulario?.III2_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III2_1"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR1}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR1"></ion-textarea>
         </div>
 
         <div class="question">
           <p>3.	O(a) senhor(a) faz uso de alguma droga?</p>
-          <p class="resp">{{formulario?.III3}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III3"></ion-input>
           <p>3.1.	Se sim, qual?</p>
-          <p class="resp">{{formulario?.III3_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III3_1"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR2}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR2"></ion-textarea>
         </div>
 
         <div class="question">
           <p>4.	Como está sua alimentação?</p>
-          <p class="resp">{{formulario?.III4}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III4"></ion-input>
           <p>4.1.	Realiza quantas refeições por dia?</p>
-          <p class="resp">{{formulario?.III4_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III4_1"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR3}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR3"></ion-textarea>
         </div>       
         
         <div class="question">
           <p>5.	Pensa que o seu estado de saúde tem piorado por estar cuidando do seu familiar?</p>
-          <p class="resp">{{formulario?.III5}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III5"></ion-input>
         </div>       
 
         <div class="question">
           <p>6.	Você possui a sensação de que tudo ao seu redor está ficando pior?</p>
-          <p class="resp">{{formulario?.III6}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III6"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR4}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR4"></ion-textarea>
         </div>
         
         <div class="question">
           <p>7.	Como está o dia a dia do cuidado?  </p>
-          <p class="resp">{{formulario?.III7}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III7"></ion-input>
           <p>7.1. Por quê o Senhor diz isso:</p>
-          <p class="resp">{{formulario?.III7_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III7_1"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR5}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR5"></ion-textarea>
         </div>
         
         <div class="question">
           <p>8.	Cuidar do seu familiar tem exigido um grande esforço físico?</p>
-          <p class="resp">{{formulario?.III8}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III8"></ion-input>
         </div> 
         
         <div class="question">
           <p>9.	Como você tem se sentido ultimamente, ao tomar conta do idoso? </p>
-          <p class="resp">{{formulario?.III9}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III9"></ion-input>
           <p>9.1.	Com qual frequência?</p>
-          <p class="resp">{{formulario?.III9_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III9_1"></ion-input>
           <p>9.2.	Você sente que seu humor tem mudado com frequência?</p>
-          <p class="resp">{{formulario?.III9_2}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III9_2"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR6}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR6"></ion-textarea>
         </div>
 
         <div class="question">
           <p>10.	Você tem se sentido sem energia, fadigado?</p>
-          <p class="resp">{{formulario?.III10}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III10"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR7}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR7"></ion-textarea>
         </div>
 
         <div class="question">
           <p>11.	O(a) senhor(a) tem dormido bem? </p>
-          <p class="resp">{{formulario?.III11}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III11"></ion-input>
           <p>11.1.	Quantas horas por noite?</p>
-          <p class="resp">{{formulario?.III11_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III11_1"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR8}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR8"></ion-textarea>
         </div>
 
         <div class="question">
           <p>12.	Você tem atividades de lazer? </p>
-          <p class="resp">{{formulario?.III12}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III12"></ion-input>
           <p>12.1.	O que você costuma fazer em suas horas de lazer?</p>
-          <p class="resp">{{formulario?.III12_1}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III12_1"></ion-input>
           <p>12.2.	Você deixou de sair com familiares ou amigos nos últimos 3 meses?</p>
-          <p class="resp">{{formulario?.III12_2}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III12_2"></ion-input>
         </div>
 
         <div class="question">
           <p>13.	Sente vontade de sair da situação e que se encontra?</p>
-          <p class="resp">{{formulario?.III13}}</p>
+          <ion-input class="resp" [(ngModel)] = "formulario.III13"></ion-input>
           <p>INTERVENÇÃO</p>
-          <p class="resp">{{formulario?.IIIR9}}</p>
+          <ion-textarea class="resp" [(ngModel)] = "formulario.IIIR9"></ion-textarea>
         </div>
 
         </ion-list>
@@ -250,37 +265,37 @@
         <ion-list>
           <div class="question">
             <p>1.	Você sente dificuldade em assistir ao idoso passar pela doença?</p>
-            <p class="resp">{{formulario?.IV1}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.IV1"></ion-input>
             <p>Se sim,por quê?</p>
-            <p class="resp">{{formulario?.IV1_1}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.IV1_1"></ion-input>
           </div>
   
           <div class="question">
             <p>2.	Você consegue manter uma conversa com o idoso?</p>
-            <p class="resp">{{formulario?.IV2}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.IV2"></ion-input>
           </div>
   
           <div class="question">
             <p>3.	Você acha que seu relacionamento com o idoso mudou nos últimos 3 meses?</p>
-            <p class="resp">{{formulario?.IV3}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.IV3"></ion-input>
             <p>Se sim,por quê?</p>
-            <p class="resp">{{formulario?.IV3_1}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.IV3_1"></ion-input>
           </div>
   
           <div class="question">
             <p>4.	Você acredita que o idoso esteja se sentindo bem cuidado? </p>
-            <p class="resp">{{formulario?.IV4}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.IV4"></ion-input>
             <p>Por quê?</p>
-            <p class="resp">{{formulario?.IV4_1}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.IV4_1"></ion-input>
             <p>INTERNVENÇÃO</p>
-            <p class="resp">{{formulario?.IVR1}}</p>
+            <ion-textarea class="resp" [(ngModel)] = "formulario.IVR1"></ion-textarea>
           </div>       
           
           <div class="question">
             <p>5.	Durante o dia há xingamentos, brigas, discussões (violência para com o idoso)?</p>
-            <p class="resp">{{formulario?.IV5}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.IV5"></ion-input>
             <p>INTERNVENÇÃO</p>
-            <p class="resp">{{formulario?.IVR2}}</p>
+            <ion-textarea class="resp" [(ngModel)] = "formulario.IVR2"></ion-textarea>
           </div>       
   
         </ion-list>
@@ -292,16 +307,16 @@
         <ion-list>
           <div class="question">
             <p>1.	Você possui ajuda de outros membros para o cuidado com o idoso ou exerce o cuidado sozinho por 24h diárias?</p>
-            <p class="resp">{{formulario?.V1}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.V1"></ion-input>
           </div>
   
           <div class="question">
             <p>2.	Você se sente preocupado com algum membro da família que não seja o idoso cuidado?</p>
-            <p class="resp">{{formulario?.V2}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.V2"></ion-input>
             <p>Por quê?</p>
-            <p class="resp">{{formulario?.V2_1}}</p>
+            <ion-input class="resp" [(ngModel)] = "formulario.V2_1"></ion-input>
             <p>INTERNVENÇÃO</p>
-            <p class="resp">{{formulario?.VR1}}</p>
+            <ion-textarea class="resp" [(ngModel)] = "formulario.VR1"></ion-textarea>
           </div>
   
         </ion-list>
@@ -309,4 +324,8 @@
 
       
   </div>
+  <div class="pos-center">
+      <button class="btn-save" (click)="saveChanges()">Salvar</button>
+  </div>
+
 </ion-content>

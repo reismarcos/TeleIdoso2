@@ -1,5 +1,3 @@
-import { Cuidador } from "../cuidador/cuidador.model";
-
 export interface Paciente{
     key?: string;
     nome: string;
@@ -8,4 +6,6 @@ export interface Paciente{
     telefone: string;
     endereco: string;
     instituicao: string;
+    fag: string; // Frequenta algum grupo
+    mcq: string; // Mora com quem
 }

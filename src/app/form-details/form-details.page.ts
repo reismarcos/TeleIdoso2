@@ -12,8 +12,8 @@ export class FormDetailsPage implements OnInit {
   formulario: Formulario;
   question = 0;
   formularioKey = null;
-  constructor(private route: ActivatedRoute, private loadingController: LoadingController, private formularioList: FormularioService) {
-
+  constructor(private router: Router, private route: ActivatedRoute, private loadingController: LoadingController, private formularioList: FormularioService) {
+    this.loadFormulario();
    }
 
    ngOnInit() {
@@ -25,7 +25,7 @@ export class FormDetailsPage implements OnInit {
 
   async loadFormulario(){
     const loading = await this.loadingController.create({
-      message: 'Loading Paciente..'
+      message: 'Carregando Formulário..'
     });
 
     await loading.present();
@@ -38,6 +38,12 @@ export class FormDetailsPage implements OnInit {
 
   public setQuestion(q){
     this.question = q;
+  }
+
+  saveChanges(){
+    this.formularioList.updateFormulario(this.formulario, this.formularioKey).then(ref => {
+      this.router.navigate(['/home'])
+      });
   }
 
   

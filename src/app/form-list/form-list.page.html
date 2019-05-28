@@ -13,13 +13,14 @@
 <ion-content padding>
 
     <ion-list class="myForm">
-      <div text-center color="primary"><h1 color="primary">Formulários</h1></div>
-      <ion-item *ngFor="let form of listaForms" button (click)="goToEdit(form.key)">
-        <ion-icon color="primary" name="list-box"></ion-icon>
-        <ion-label color="primary">
-            Cuidador: {{ form.cuidador }}
-        </ion-label>
-      </ion-item>
+      <div text-center color="primary"><h1 color="primary">Formulários de {{userName}}</h1></div>
+      <div *ngFor="let form of listaForms">
+        <ion-item button *ngIf="form.cuidador == userName" (click)="goToDetails(form.key)">
+          <ion-icon color="primary" name="list-box"></ion-icon>
+          <p type="date" color="primary">Formulário {{form?.tipoLigacao}} - Data: {{form?.data | date:'dd/MM/yyyy'}}</p>
+        </ion-item>
+      </div>
+      
 
       <div text-center>
           <ion-button fill="outline" text-center class="btn-add" (click)="goToFormulario()">
@@ -30,9 +31,4 @@
 
     </ion-list>
   
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button size="small" type="button" (click)="goToFormulario()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

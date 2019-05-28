@@ -11,8 +11,80 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Informações do Paciente</h3>
+  <div class="myForm">
   <ion-list>
+    <h3>Informações do Cuidador</h3>
+    <ion-item>
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input [(ngModel)] = "cuidador.nome"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Sexo:</ion-label>
+        <ion-select [(ngModel)] = "cuidador.sexo">
+          <ion-select-option value="Masculino">Masculino</ion-select-option>
+          <ion-select-option value="Feminino">Feminino</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Data de Nascimento:</ion-label>
+        <ion-input [(ngModel)] = "cuidador.dataNascimento"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Telefone:</ion-label>
+        <ion-input [(ngModel)] = "cuidador.telefone"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Endereço:</ion-label>
+        <ion-textarea [(ngModel)] = "cuidador.endereco" maxlength ="500"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Cuidador:</ion-label>
+        <br><br>
+        <ion-radio-group [(ngModel)]="cuidador.tipoCuidador"> 
+            <ion-row>
+                <ion-item>
+                  <ion-label>Formal</ion-label>
+                  <ion-radio value="Formal"></ion-radio>
+                </ion-item>
+    
+                <ion-item>
+                  <ion-label>Não Formal</ion-label>
+                  <ion-radio value="Não Formal"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Familia</ion-label>
+                  <ion-radio value="Familiar"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Não Familiar</ion-label>
+                  <ion-radio value="Não Familiar"></ion-radio>
+                </ion-item>
+
+            </ion-row>
+          </ion-radio-group>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Parentesco com o paciente:</ion-label>
+        <ion-input [(ngModel)] = "cuidador.parentesco"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Frequenta algum grupo:</ion-label>
+        <ion-input [(ngModel)] = "cuidador.fag"></ion-input>
+      </ion-item>
+   
+  </ion-list>
+
+  <ion-list>
+  <h3>Informações do Paciente</h3>
     <ion-item>
       <ion-label position="floating">Nome:</ion-label>
       <ion-input [(ngModel)] = "cuidador.paciente.nome"></ion-input>
@@ -49,39 +121,26 @@
         <ion-select-option value="Melhor em Casa – São Gonçalo">Melhor em Casa – São Gonçalo</ion-select-option>
       </ion-select>
     </ion-item>
-    <br>
-    <br>
 
-    <h3>Informações do Cuidador</h3>
     <ion-item>
-        <ion-label position="floating">Nome:</ion-label>
-        <ion-input [(ngModel)] = "cuidador.nome"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Sexo:</ion-label>
-        <ion-select [(ngModel)] = "cuidador.sexo">
-          <ion-select-option value="Masculino">Masculino</ion-select-option>
-          <ion-select-option value="Feminino">Feminino</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Data de Nascimento:</ion-label>
-        <ion-input [(ngModel)] = "cuidador.dataNascimento"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Telefone:</ion-label>
-        <ion-input [(ngModel)] = "cuidador.telefone"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Endereço:</ion-label>
-        <ion-textarea [(ngModel)] = "cuidador.endereco" maxlength ="500"></ion-textarea>
-      </ion-item>
-  </ion-list>
+      <ion-label position="floating">Frequenta algum grupo:</ion-label>
+      <ion-input [(ngModel)] = "cuidador.paciente.fag"></ion-input>
+    </ion-item>
 
-  <ion-button expand="block"  fill="clear" (click)="cadastraPaciente(cuidador)">Add</ion-button>
+    <ion-item>
+      <ion-label position="floating">Mora com quem:</ion-label>
+      <ion-input [(ngModel)] = "cuidador.paciente.mcq"></ion-input>
+    </ion-item>
+
+    </ion-list>
+
+    <div class="pos-center">
+      <button class="btn-save" (click)="cadastraPaciente(cuidador)">Salvar</button>
+    </div>
+
+    </div>
+
+
+
   
 </ion-content>

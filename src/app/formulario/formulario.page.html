@@ -48,13 +48,14 @@
     
     <div class="myForm">
       <h1>{{titulo}}</h1>
+      <h3>{{formulario?.tipoLigacao}}</h3>
       <!----------------------------INFOS------------------------------>
       <ion-list *ngIf="question == 0">
       
         <ion-item>
           <ion-label>Cuidador:</ion-label>
-          <ion-select [(ngModel)]='cuidador'>
-            <ion-select-option *ngFor="let cuidador of lista" value="{{cuidador.key}}">{{ cuidador?.nome }}</ion-select-option>
+          <ion-select [(ngModel)]='formulario.cuidador'>
+            <ion-select-option *ngFor="let cuidador of lista" value="{{cuidador.nome}}">{{ cuidador?.nome }}</ion-select-option>
           </ion-select>
         </ion-item>
 

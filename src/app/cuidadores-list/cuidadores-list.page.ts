@@ -5,17 +5,16 @@ import { Cuidador } from '../models/cuidador/cuidador.model';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-pacientes-list',
-  templateUrl: './pacientes-list.page.html',
-  styleUrls: ['./pacientes-list.page.scss'],
+  selector: 'app-cuidadores-list',
+  templateUrl: './cuidadores-list.page.html',
+  styleUrls: ['./cuidadores-list.page.scss'],
 })
-export class PacientesListPage implements OnInit {
+export class CuidadoresListPage implements OnInit {
 
   lista: Cuidador[];
-  constructor(private loadingController: LoadingController, private router: Router, private cuidadoresList: PacienteService) {
-   }
+  constructor(private loadingController: LoadingController, private router: Router, private cuidadoresList: PacienteService) { }
 
-   ngOnInit() {
+  ngOnInit() {
     this.loadCuidadores();
   }
 
@@ -31,16 +30,12 @@ export class PacientesListPage implements OnInit {
     })
   }
 
-  public goToCadastroPacientes(){
-    this.router.navigate(['/cadastro-pacientes']);
+  public goToCuidadorForms(id){
+    this.router.navigate(['/form-list', id]);
   }
 
-  public visualizar(id){
-    this.router.navigate(['/cadastro-pacientes', id]);
-  }
-
-  public goToFormsList(){
-    this.router.navigate(['/form-list']);
+  public goToFormulario(){
+    this.router.navigate(['/formulario']);
   }
 
 }

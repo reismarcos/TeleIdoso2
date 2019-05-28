@@ -26,7 +26,7 @@ export class AppComponent {
     },
     {
       title: 'Formularios',
-      url: '/form-list',
+      url: '/cuidadores-list',
       icon: 'list'
     }
   ];

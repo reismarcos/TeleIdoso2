@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Formulario, FormularioService } from '../services/formulario.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { PacienteService } from '../services/paciente.service';
 
 @Component({
   selector: 'app-form-list',
@@ -8,18 +10,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./form-list.page.scss'],
 })
 export class FormListPage implements OnInit {
+  userName: string;
+  listaForms: any;
 
-  listaForms: Formulario[];
+  constructor(private pacienteService: PacienteService, private router: Router, private route: ActivatedRoute, private loadingController: LoadingController, private formularioList: FormularioService) { 
 
-  constructor(private router: Router, private formulariosList: FormularioService) { }
-
-  
-  ngOnInit() {
-    //this.formulariosList.getFormularios().subscribe(res => {
-      //this.listaForms = res;
-    //})
   }
-  
+
+  ngOnInit() {
+    this.userName = this.route.snapshot.params['id'];
+    this.loadFormularios();
+  }
+
+  async loadFormularios(){
+    const loading = await this.loadingController.create({
+      message: 'Carregando formulários'
+    });
+    await loading.present();
+
+    this.formularioList.getFormularios().subscribe(res => {
+      loading.dismiss();
+      this.listaForms = res;
+    })
+  }
 
   public goToFormulario(){
     this.router.navigate(['/formulario']);

@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+      </ion-buttons>
+      <ion-title>Formulários</ion-title>
+      <ion-buttons id="btn-menu"  slot="start">
+        <ion-menu-button id="btn-menu" when="xl"></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <div class="myForm">
+    <h2> Clique no Cuidador para acessar seus Formulários</h2>
+    <ion-list>
+      <ion-item button *ngFor="let cuidador of lista"  (click)="goToCuidadorForms(cuidador.nome)">
+        <a>Cuidador: {{ cuidador.nome }}</a>
+      </ion-item>
+    </ion-list>
+
+    <div text-center>
+        <ion-button fill="outline" text-center class="btn-add" (click)="goToFormulario()">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          Preencher formulário
+        </ion-button>
+    </div>
+    
+  </div>
+</ion-content>

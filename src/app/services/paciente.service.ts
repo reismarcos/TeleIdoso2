@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs'
+import { Formulario } from '../services/formulario.service';
+
 import { map } from 'rxjs/operators';
 import { Cuidador } from '../models/cuidador/cuidador.model';
 
@@ -11,13 +13,14 @@ import { Cuidador } from '../models/cuidador/cuidador.model';
 export class PacienteService {
 
   // private pacientesListRef = this.db.list<Paciente>('pacientes')
+  private formulariosCollection: AngularFirestoreCollection<Formulario>;
   private cuidadoresCollection: AngularFirestoreCollection<Cuidador>;
   private cuidadoresList: Observable<Cuidador[]>;
+  private formularioList: Observable<Formulario[]>;
 
   // constructor(private db: AngularFireDatabase) { }
   constructor(private db: AngularFirestore) { 
     this.cuidadoresCollection = db.collection<Cuidador>('cuidadores');
-
     this.cuidadoresList = this.cuidadoresCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map( a => {
@@ -41,11 +44,9 @@ export class PacienteService {
   }
 
   public async addFormulario(cuidadorKey: string, formulario: any){
-    let id = await this.cuidadoresCollection.doc(cuidadorKey).collection('Formulario').ref.doc().id;
+    let id = await this.cuidadoresCollection.doc(cuidadorKey).collection('formularios').ref.doc().id;
     formulario['key'] = id;
-    let cuidador = this.cuidadoresCollection.doc(cuidadorKey).ref.get();
-    console.log(cuidador);
-    return this.cuidadoresCollection.doc(cuidadorKey).collection('Formulario').doc(id).set(formulario);
+    return this.cuidadoresCollection.doc(cuidadorKey).collection('formularios').doc(id).set(formulario);
   }
 
   public getPaciente(id): Observable<any>{
@@ -59,6 +60,7 @@ export class PacienteService {
   public remove(id){
     return this.cuidadoresCollection.doc(id).delete;
   }
+
 
   // public getAll(){
   //   return this.pacientesListRef; 
