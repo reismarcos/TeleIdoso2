@@ -60,7 +60,7 @@ export interface Formulario {
   III7_1: String;
   IIIR5: String[];
   III8:String;
-  III9:String;
+  III9: String[];
   III9_1:String;
   III9_2: String;
   IIIR6: String[];

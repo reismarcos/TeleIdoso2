@@ -48,10 +48,9 @@
     
     <div class="myForm">
       <h1>{{titulo}}</h1>
-      <h3>{{formulario?.tipoLigacao}}</h3>
       <!----------------------------INFOS------------------------------>
       <ion-list *ngIf="question == 0">
-      
+        <h3>Formulário: {{formulario?.tipoLigacao}}</h3>
         <ion-item>
           <ion-label>Cuidador:</ion-label>
           <ion-select [(ngModel)]='formulario.cuidador'>
@@ -1007,42 +1006,42 @@
 
      <!----------------------------Questao III9----------------------------->
      <div *ngIf="question == 24"> 
-      <ion-radio-group [(ngModel)]='formulario.III9'> 
+      <ion-list> 
         <h2>9.	Como você tem se sentido ultimamente, ao tomar conta do idoso? </h2>
         <ion-row>
 
           <ion-col>
             <ion-item>
               <ion-label>Estressado</ion-label>
-              <ion-radio value="Estressado"></ion-radio>
+              <ion-checkbox [(ngModel)]='III9_A'></ion-checkbox>
             </ion-item>
           </ion-col>
 
           <ion-col>
             <ion-item>
               <ion-label>Impaciente</ion-label>
-              <ion-radio value="Impaciente"></ion-radio>
+              <ion-checkbox [(ngModel)]='III9_B'></ion-checkbox>
             </ion-item>
           </ion-col>
 
           <ion-col>
             <ion-item>
               <ion-label>Nervoso</ion-label>
-              <ion-radio value="Nervoso"></ion-radio>
+              <ion-checkbox [(ngModel)]='III9_C'></ion-checkbox>
             </ion-item>
           </ion-col>
 
           <ion-col>
             <ion-item>
               <ion-label>Com raiva</ion-label>
-              <ion-radio value="Com raiva"></ion-radio>
+              <ion-checkbox [(ngModel)]='III9_D'></ion-checkbox>
             </ion-item>
           </ion-col>
 
           <ion-col>
             <ion-item>
               <ion-label>Ansioso</ion-label>
-              <ion-radio value="Ansioso"></ion-radio>
+              <ion-checkbox [(ngModel)]='III9_E'></ion-checkbox>
             </ion-item>
           </ion-col>
 
@@ -1050,33 +1049,33 @@
           <ion-col>
               <ion-item>
                 <ion-label>Irritado</ion-label>
-                <ion-radio value="Irritado"></ion-radio>
+                <ion-checkbox [(ngModel)]='III9_F'></ion-checkbox>
               </ion-item>
             </ion-col>
 
             <ion-col>
               <ion-item>
                 <ion-label>Cansado</ion-label>
-                <ion-radio value="Cansado"></ion-radio>
+                <ion-checkbox [(ngModel)]='III9_G'></ion-checkbox>
               </ion-item>
             </ion-col>
 
             <ion-col>
               <ion-item>
                 <ion-label>Esgotado</ion-label>
-                <ion-radio value="Esgotado"></ion-radio>
+                <ion-checkbox [(ngModel)]='III9_H'></ion-checkbox>
               </ion-item>
             </ion-col>
 
             <ion-col>
               <ion-item>
                 <ion-label>Calmo/tranquilo</ion-label>
-                <ion-radio value="Calmo/tranquilo"></ion-radio>
+                <ion-checkbox [(ngModel)]='III9_I'></ion-checkbox>
               </ion-item>
             </ion-col>
 
         </ion-row>
-      </ion-radio-group>
+      </ion-list>
 
       <!----------------------------Questao III9.1----------------------------->
       <ion-radio-group [(ngModel)]='formulario.III9_1'> 

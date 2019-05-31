@@ -6,7 +6,6 @@ import { Paciente } from '../models/paciente/paciente.model';
 import { Observable } from 'rxjs'
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Cuidador } from '../models/cuidador/cuidador.model';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario',
@@ -30,6 +29,8 @@ export class FormularioPage implements OnInit {
   III1_2A:boolean; III1_2B:boolean; III1_2C:boolean; III1_2D:boolean; III1_2E:boolean; III1_2F:boolean;  III1_2G:boolean; III1_2H:boolean; III1_2I:boolean; III1_2j:any;
   III3_1A:boolean; III3_1B:boolean; III3_1C:boolean; III3_1D:boolean; III3_1e:any;
   III12_1A:boolean; III12_1B:boolean; III12_1C:boolean; III12_1D:boolean; III12_1E:boolean; III12_1F:boolean;  III12_1G:boolean; III12_1H:boolean; III12_1I:boolean; III12_1j:any;
+  III9_A:boolean; III9_B:boolean; III9_C:boolean; III9_D:boolean; III9_E:boolean; III9_F:boolean;  III9_G:boolean; III9_H:boolean; III9_I:boolean;
+
 
   //Variaveis para checkbox de intervenção
   IR1_A:boolean; IR1_B:boolean; IR1_C:boolean;
@@ -99,7 +100,7 @@ export class FormularioPage implements OnInit {
     III7_1: '',
     IIIR5: [],
     III8:'',
-    III9:'',
+    III9:[],
     III9_1:'',
     III9_2: '',
     IIIR6: [],
@@ -327,7 +328,19 @@ export class FormularioPage implements OnInit {
   if (this.IIIR9_B) { this.formulario.IIIR9.push('Orientar sobre a importância da realização de atividades de lazer') };
   if (this.IIIR9_C) { this.formulario.IIIR9.push('Incentivar o cuidador a otimizar seu tempo destinado aos cuidados para que consiga destinar tempo para si mesmo.') };
 
+    /* Checkbox Questao III9 */
+    if (this.III9_A) { this.formulario.III9.push('Estressado') };
+    if (this.III9_B) { this.formulario.III9.push('Impaciente') };
+    if (this.III9_C) { this.formulario.III9.push('Nervoso') };
+    if (this.III9_D) { this.formulario.III9.push('Com raiva') };
+    if (this.III9_E) { this.formulario.III9.push('Ansioso') };
+    if (this.III9_F) { this.formulario.III9.push('Irritado') };
+    if (this.III9_G) { this.formulario.III9.push('Cansado') };
+    if (this.III9_H) { this.formulario.III9.push('Esgotado') };
+    if (this.III9_I) { this.formulario.III9.push('Calma/tranquilo') };
 
+
+  
   /* Checkbox Questao III12.1 */
   if (this.III12_1A) { this.formulario.III12_1.push('Sai com amigos ou familiares') };
   if (this.III12_1B) { this.formulario.III12_1.push('Passeios a lugares diferentes') };
