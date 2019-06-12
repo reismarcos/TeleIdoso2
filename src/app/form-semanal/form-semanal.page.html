@@ -1,0 +1,1016 @@
+<ion-header>
+  <ion-toolbar>
+    <button class="font-roboto" (click)="setQuestion(0)">Infos</button>
+    <button (click)="setQuestion(1)">I 1</button>
+    <button (click)="setQuestion(2)">I 4</button>
+    <button (click)="setQuestion(3)">I 5</button>
+    <button (click)="setQuestion(4)">I 6</button>
+    <button (click)="setQuestion(5)">III 1</button>
+    <button (click)="setQuestion(6)">III 4</button>
+    <button (click)="setQuestion(7)">III 7</button>
+    <button (click)="setQuestion(8)">III 9</button>
+    <button (click)="setQuestion(9)">III 11</button>
+    <button (click)="setQuestion(10)">III 12</button>
+    <button (click)="setQuestion(11)">IV 5</button>
+    <button (click)="setQuestion(12)">V 1</button>
+    <button (click)="setQuestion(13)">Concluir</button>
+
+    <ion-buttons id="btn-menu"  slot="start">
+      <ion-menu-button id="btn-menu" when="xl"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" padding>
+  
+  <div class="myForm">
+    <h1>{{titulo}}</h1>
+    <!----------------------------INFOS------------------------------>
+    <ion-list *ngIf="question == 0">
+      <h3>Formulário: {{formulario?.tipoLigacao}}</h3>
+      <ion-item>
+        <ion-label>Cuidador:</ion-label>
+        <ion-select [(ngModel)]='formulario.cuidador'>
+          <ion-select-option *ngFor="let cuidador of lista" value="{{cuidador.nome}}">{{ cuidador?.nome }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <br><br>
+      <ion-item>
+        <ion-label >Data:</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="formulario.data"></ion-datetime>
+      </ion-item>
+      
+      <br><br>
+      <ion-item>
+        <ion-label>Numero da ligação:</ion-label>
+        <ion-input type="number" [(ngModel)]="formulario.numeroLigacao"></ion-input>
+      </ion-item>
+      
+
+    
+    </ion-list> 
+
+    <!----------------------------Questao I1------------------------------>
+    <ion-radio-group *ngIf="question == 1" [(ngModel)]='formulario.I1'> 
+      <h2>1.	Você percebe um aumento na necessidade de cuidado ou uma maior dependência por parte do idoso?</h2>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Não</ion-label>
+            <ion-radio value="Não"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Sim</ion-label>
+            <ion-radio value="Sim"></ion-radio>
+          </ion-item>
+        </ion-col>
+        
+      </ion-row>
+    </ion-radio-group>
+    
+    <!----------------------------Questao I4------------------------------>
+    <ion-radio-group *ngIf="question == 2" [(ngModel)]="formulario.I4"> 
+      <h2>4.	O idoso toma os medicamentos de rotina na dose e horário correto?</h2>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Não</ion-label>
+            <ion-radio value="Não"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Sim</ion-label>
+            <ion-radio value="Sim"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Precisa de ajuda</ion-label>
+            <ion-radio value="Precisa de ajuda"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-radio-group>
+
+    <!----------------------------Questao I5------------------------------>
+    <ion-list  *ngIf="question == 3" >
+
+      <ion-radio-group  [(ngModel)]="formulario.I5"> 
+        <h2>5.	O idoso desenvolveu algum comportamento diferente na última semana? </h2>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Não</ion-label>
+              <ion-radio value="Não"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Sim</ion-label>
+              <ion-radio value="Sim"></ion-radio>
+            </ion-item>
+          </ion-col>
+          
+        </ion-row>
+      </ion-radio-group>    
+
+      <ion-item *ngIf="formulario.I5 == 'Sim'">
+        <ion-input placeholder="Qual?" [(ngModel)]="formulario.I5_1"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <!----------------------------Questao I6------------------------------>
+    <ion-radio-group *ngIf="question == 4" [(ngModel)]='formulario.I6'> 
+        <h2>6.	Você percebeu uma maior gravidade da doença ou alguma cronicidade da doença na última semana?</h2>
+        <ion-row>
+  
+          <ion-col>
+            <ion-item>
+              <ion-label>Não</ion-label>
+              <ion-radio value="Não"></ion-radio>
+            </ion-item>
+          </ion-col>
+  
+          <ion-col>
+            <ion-item>
+              <ion-label>Sim</ion-label>
+              <ion-radio value="Sim"></ion-radio>
+            </ion-item>
+          </ion-col>
+          
+        </ion-row>
+        <ion-button (click)="setInter(1)">Intervenção</ion-button>
+    </ion-radio-group>
+
+     <!----------------------------Questao III1----------------------------->
+     <div *ngIf="question == 5" >
+     <ion-radio-group [(ngModel)]='formulario.III1'> 
+        <h2>1.	O(a) senhor(a) tem cuidado da sua saúde?</h2>
+        <ion-row>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Não/Nunca</ion-label>
+              <ion-radio value="Não/Nunca"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Raramente</ion-label>
+              <ion-radio value="Raramente"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Às vezes</ion-label>
+              <ion-radio value="Ás vezes"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Quase sempre</ion-label>
+              <ion-radio value="Quase sempre"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Sempre</ion-label>
+              <ion-radio value="Sempre"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+     </ion-radio-group>
+     
+     <!----------------------------Questao III1.1----------------------------->
+     <ion-radio-group [(ngModel)]='formulario.III1_1'> 
+        <h2>1.1.	Possui algum problema de saúde ou doença crônica? </h2>
+        <ion-row>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Não</ion-label>
+              <ion-radio value="Não"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Sim</ion-label>
+              <ion-radio value="Sim"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>
+
+    <!----------------------------Questao III1.2------------------------------>
+    <ion-list *ngIf="formulario.III1_1 == 'Sim'">
+        <h2>Qual? </h2>
+
+        <ion-item >
+          <ion-label>HAS</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2A"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>DM</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2B"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Cardiopatia</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2C"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Doença renal</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2D"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Problema gastrointestinal</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2E"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label> Problema emocional/psicológico</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2F"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Enxaqueca</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2G"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Sobrepeso</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2H"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Outros</ion-label>
+          <ion-checkbox [(ngModel)]="III1_2I"></ion-checkbox>
+        </ion-item>
+
+        <ion-item *ngIf="III1_2I">
+          <ion-input placeholder="Digite aqui as outras doenças" [(ngModel)]="III1_2j"></ion-input>
+        </ion-item>
+            
+      </ion-list>       
+    </div>
+
+     <!----------------------------Questao III4----------------------------->
+     <div *ngIf="question == 6" > 
+      <ion-radio-group [(ngModel)]='formulario.III4'> 
+          <h2>4.	Como está sua alimentação?</h2>
+          <ion-row>
+  
+            <ion-col>
+              <ion-item>
+                <ion-label>Alimentando-se bem</ion-label>
+                <ion-radio value="Alimentando-se bem"></ion-radio>
+              </ion-item>
+            </ion-col>
+  
+            <ion-col>
+              <ion-item>
+                <ion-label>Consumo de alimentos diminuída</ion-label>
+                <ion-radio value="Consumo de alimentos diminuída"></ion-radio>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-label>Consumo de alimentos aumentada</ion-label>
+                <ion-radio value="Consumo de alimentos aumentada"></ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+
+       </ion-radio-group>
+
+
+       <ion-radio-group [(ngModel)]='formulario.III4_1'> 
+          <h2>4.1.	Realiza quantas refeições por dia?</h2>
+          <ion-row>
+  
+            <ion-col>
+              <ion-item>
+                <ion-label>Uma refeição/dia</ion-label>
+                <ion-radio value="Uma refeição/dia"></ion-radio>
+              </ion-item>
+            </ion-col>
+  
+            <ion-col>
+              <ion-item>
+                <ion-label>Duas refeições/dia</ion-label>
+                <ion-radio value="Duas refeições/dia"></ion-radio>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-label>Três refeições/dia</ion-label>
+                <ion-radio value="Três refeições/dia"></ion-radio>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-label>Quatro refeições/dia</ion-label>
+                <ion-radio value="Quatro refeições/dia"></ion-radio>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-label>Cinco refeições/dia</ion-label>
+                <ion-radio value="Cinco refeições/dia"></ion-radio>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-label>Mais que cinco refeições/dia</ion-label>
+                <ion-radio value="Mais que cinco refeições/dia"></ion-radio>
+              </ion-item>
+            </ion-col>
+
+          </ion-row>
+       </ion-radio-group>
+
+       
+       <ion-button (click)="setInter(1)">Intervenção</ion-button>
+    </div>
+
+   <!----------------------------Questao III7----------------------------->
+   <div  *ngIf="question == 7">
+   <ion-radio-group [(ngModel)]='formulario.III7'> 
+      <h2>7.	Como está o dia a dia do cuidador?</h2>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Tranquilo</ion-label>
+            <ion-radio value="Tranquilo"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Consegue realizar todas as atividades planejadas no dia</ion-label>
+            <ion-radio value="Consegue realizar todas as atividades planejadas no dia"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Cansativo</ion-label>
+            <ion-radio value="Cansativo"></ion-radio>
+          </ion-item>
+        </ion-col>
+      
+        <ion-col>
+          <ion-item>
+            <ion-label>Corrido</ion-label>
+            <ion-radio value="Corrido"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Não consegue realizar as atividades planejadas no dia</ion-label>
+            <ion-radio value="Não consegue realizar as atividades planejadas no dia"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Varia de acordo com o estado clínico do idoso</ion-label>
+            <ion-radio value="Varia de acordo com o estado clínico do idoso"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+
+      </ion-row>
+  </ion-radio-group>
+
+  <ion-list *ngIf="formulario.III7 != 'Tranquilo' && formulario.III7 != 'Consegue realizar todas as atividades planejadas no dia' &&  formulario.III7 != '' " >
+    <ion-item>
+      <ion-label>Por quê o Senhor diz isso?</ion-label>
+      <ion-input placeholder="Digite aqui a resposta"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button (click)="setInter(1)">Intervenção</ion-button>
+
+  </div>
+
+   <!----------------------------Questao III9----------------------------->
+   <div *ngIf="question == 8"> 
+    <ion-list> 
+      <h2>9.	Como você tem se sentido ultimamente, ao tomar conta do idoso? </h2>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Estressado</ion-label>
+            <ion-checkbox [(ngModel)]='III9_A'></ion-checkbox>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Impaciente</ion-label>
+            <ion-checkbox [(ngModel)]='III9_B'></ion-checkbox>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Nervoso</ion-label>
+            <ion-checkbox [(ngModel)]='III9_C'></ion-checkbox>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Com raiva</ion-label>
+            <ion-checkbox [(ngModel)]='III9_D'></ion-checkbox>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Ansioso</ion-label>
+            <ion-checkbox [(ngModel)]='III9_E'></ion-checkbox>
+          </ion-item>
+        </ion-col>
+
+        
+        <ion-col>
+            <ion-item>
+              <ion-label>Irritado</ion-label>
+              <ion-checkbox [(ngModel)]='III9_F'></ion-checkbox>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Cansado</ion-label>
+              <ion-checkbox [(ngModel)]='III9_G'></ion-checkbox>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Esgotado</ion-label>
+              <ion-checkbox [(ngModel)]='III9_H'></ion-checkbox>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Calmo/tranquilo</ion-label>
+              <ion-checkbox [(ngModel)]='III9_I'></ion-checkbox>
+            </ion-item>
+          </ion-col>
+
+      </ion-row>
+    </ion-list>
+
+    <!----------------------------Questao III9.1----------------------------->
+    <ion-radio-group [(ngModel)]='formulario.III9_1'> 
+      <h2>9.1.	Com qual frequência?</h2>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Não/Nunca</ion-label>
+            <ion-radio value="Não/Nunca"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Raramente</ion-label>
+            <ion-radio value="Raramente"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Às vezes</ion-label>
+            <ion-radio value="Ás vezes"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Quase sempre</ion-label>
+            <ion-radio value="Quase sempre"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Sempre</ion-label>
+            <ion-radio value="Sempre"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-radio-group>
+
+    <!----------------------------Questao III9.2----------------------------->
+    <ion-radio-group [(ngModel)]='formulario.III9_2'> 
+      <h2>9.2.	Você sente que seu humor tem mudado com frequência?</h2>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Não/Nunca</ion-label>
+            <ion-radio value="Não/Nunca"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Raramente</ion-label>
+            <ion-radio value="Raramente"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Às vezes</ion-label>
+            <ion-radio value="Ás vezes"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Quase sempre</ion-label>
+            <ion-radio value="Quase sempre"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Sempre</ion-label>
+            <ion-radio value="Sempre"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-radio-group>
+
+ 
+ 
+    <ion-button (click)="setInter(1)">Intervenção</ion-button>
+  </div>
+
+   <!----------------------------Questao III11----------------------------->
+   <div *ngIf="question == 9" >
+      <ion-radio-group [(ngModel)]='formulario.III11'> 
+        <h2>11.	O(a) senhor(a) tem dormido bem?</h2>
+        <ion-row>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Não/Nunca</ion-label>
+              <ion-radio value="Não/Nunca"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Raramente</ion-label>
+              <ion-radio value="Raramente"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Às vezes</ion-label>
+              <ion-radio value="Ás vezes"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Quase sempre</ion-label>
+              <ion-radio value="Quase sempre"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Sempre</ion-label>
+              <ion-radio value="Sempre"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+    </ion-radio-group>
+
+    <ion-radio-group [(ngModel)]='formulario.III11_1'> 
+        <h2>11.1.	Quantas horas por noite?</h2>
+        <ion-row>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Não durmo, tenho insomnia</ion-label>
+              <ion-radio value="Não durmo, tenho insomnia"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>2 – 4 horas</ion-label>
+              <ion-radio value="2 – 4 horas"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>5 – 7 horas</ion-label>
+              <ion-radio value="5 – 7 horas"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>8 horas ou mais</ion-label>
+              <ion-radio value="8 horas ou mais"></ion-radio>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+        <ion-button (click)="setInter(1)">Intervenção</ion-button>
+
+    </ion-radio-group>
+  </div>  
+
+  <!----------------------------Questao III12----------------------------->
+  <div *ngIf="question == 10">
+   <ion-radio-group [(ngModel)]='formulario.III12'> 
+      <h2>12.	Você tem atividades de lazer? </h2>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Não/Nunca</ion-label>
+            <ion-radio value="Não/Nunca"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Raramente</ion-label>
+            <ion-radio value="Raramente"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Às vezes</ion-label>
+            <ion-radio value="Ás vezes"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Quase sempre</ion-label>
+            <ion-radio value="Quase sempre"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Sempre</ion-label>
+            <ion-radio value="Sempre"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-radio-group>
+
+  <!----------------------------Questao III12.1------------------------------>
+    <ion-list >
+        <h2>12.1.	O que você costuma fazer em suas horas de lazer? </h2>
+
+        <ion-item >
+          <ion-label>Sai com amigos ou familiares</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1A"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Passeios a lugares diferentes</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1B"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Viaja</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1C"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Fica em casa</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1D"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Vai a Igreja</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1E"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Vai ao Cinema</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1F"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Vai ao Teatro</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1G"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Realiza caminhadas</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1H"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Outros</ion-label>
+          <ion-checkbox [(ngModel)]="III12_1I"></ion-checkbox>
+        </ion-item>
+
+        <ion-item *ngIf="III12_1I">
+          <ion-input placeholder="Digite aqui as outras atividades" [(ngModel)]="III12_1j"></ion-input>
+        </ion-item>
+            
+      </ion-list>
+  
+  <!----------------------------Questao III12-2----------------------------->
+  <ion-radio-group [(ngModel)]='formulario.III12_2'> 
+    <h2>12.2.	Você deixou de sair com familiares ou amigos nos últimos 3 meses?</h2>
+    <ion-row>
+
+      <ion-col>
+        <ion-item>
+          <ion-label>Não</ion-label>
+          <ion-radio value="Não"></ion-radio>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <ion-label>Sim</ion-label>
+          <ion-radio value="Sim"></ion-radio>
+        </ion-item>
+      </ion-col>
+      
+    </ion-row>
+  </ion-radio-group>
+
+    </div>
+
+   <!----------------------------Questao IV5----------------------------->
+   <ion-radio-group *ngIf="question == 11" [(ngModel)]='formulario.IV5'> 
+      <h2>5.	Durante o dia há xingamentos, brigas, discussões (violência para com o idoso)?</h2>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Não/Nunca</ion-label>
+            <ion-radio value="Não/Nunca"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Raramente</ion-label>
+            <ion-radio value="Raramente"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Às vezes</ion-label>
+            <ion-radio value="Ás vezes"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Quase sempre</ion-label>
+            <ion-radio value="Quase sempre"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Sempre</ion-label>
+            <ion-radio value="Sempre"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+      <ion-button (click)="setInter(1)">Intervenção</ion-button>
+
+  </ion-radio-group>
+
+   <!----------------------------Questao V1----------------------------->
+   <ion-radio-group *ngIf="question == 12" [(ngModel)]='formulario.V1'> 
+      <h2>1.	Você possui ajuda de outros membros para o cuidado com o idoso ou exerce o cuidado sozinho por 24h diárias?</h2>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Não possuo ajuda, realizo o cuidado sozinho</ion-label>
+            <ion-radio value="Não possuo ajuda, realizo o cuidado sozinho"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Sim, possuo ajuda</ion-label>
+            <ion-radio value="Sim, possuo ajuda"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+
+  </ion-radio-group>    
+
+    <!----------------------------FINALIZAR------------------------------>
+    <div *ngIf="question == 13">
+      <div class="alertBox">
+          <h2 class="alert"> OS CAMPOS ABAIXO NÃO FORAM PREENCHIDOS</h2>
+          <div class="validateMsg">{{validateMsg}}</div>
+      </div>
+      
+      <div class="legendBox">
+        <h3>Legenda:</h3>
+        <p>I1 - Pergunta 1 da parte I</p>
+        <p>IR3 - Intervenção 3 da parte I</p>
+        <p>IV2 - Pergunta 2 da parte IV</p>
+        <p>IVR3 - Intervenção 3 da parte IV</p>
+      </div>
+
+    </div>
+
+    
+  </div>
+
+  <!----------------------------Intervenção IR2------------------------------>
+  <div class="myForm" *ngIf="showInter == 1 && question == 4 ">
+    <ion-list>
+      <h2>INTERVENÇÃO</h2>
+  
+      <ion-item>
+        <ion-label>Ensinar ao cuidador os planos médicos e de enfermagem para o cuidado</ion-label>
+        <ion-checkbox [(ngModel)]="IR2_A"></ion-checkbox>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Determinar as expectativas comportamentais adequadas ao estado cognitivo do idoso</ion-label>
+        <ion-checkbox [(ngModel)]="IR2_B"></ion-checkbox>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+  <!----------------------------Intervenção IIIR3------------------------------>
+  <div class="myForm" *ngIf="showInter == 1 && question == 6 ">
+      <ion-list>
+        <h2>INTERVENÇÃO</h2>
+    
+        <ion-item>
+          <ion-label>Orientar sobre a necessidade de realização de uma dieta equilibrada</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR3_A"></ion-checkbox>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Manter alimentação de costume, dando preferência para alimentos leves (frutas e legumes), e evitando frituras e condimentados.</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR3_B"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Orientar sobre a importância de uma boa dieta, exercícios e ingestão de líquidos durante o dia.</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR3_C"></ion-checkbox>
+        </ion-item>
+  
+      </ion-list>
+    </div>  
+
+  <!----------------------------Intervenção IIIR5------------------------------>
+  <div class="myForm" *ngIf="showInter == 1 && question == 7 ">
+      <ion-list>
+        <h2>INTERVENÇÃO</h2>
+    
+        <ion-item>
+          <ion-label>Incentivar o cuidador a falar os porquês das respostas anteriores</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR5_A"></ion-checkbox>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Conversar visando demonstrar que compreende os motivos do cuidador</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR5_B"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Orientar sobre formas de melhorar a rotina de cuidados</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR5_C"></ion-checkbox>
+        </ion-item>
+  
+      </ion-list>
+    </div>  
+
+
+  <!----------------------------Intervenção IIIR6------------------------------>
+  <div class="myForm" *ngIf="showInter == 1 && question == 8 ">
+      <ion-list>
+        <h2>INTERVENÇÃO</h2>
+    
+        <ion-item>
+          <ion-label>Determinar risco de segurança para idoso e cuidador(sinais de violência)</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR6_A"></ion-checkbox>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Incentivar o cuidador a ventilar seus sentimentos de maneira adequada e segura (atividade física, socar saco de areia, arteterapia)</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR6_B"></ion-checkbox>
+        </ion-item>
+
+      </ion-list>
+    </div>  
+
+
+  <!----------------------------Intervenção IIIR8------------------------------>
+  <div class="myForm" *ngIf="showInter == 1 && question == 9 ">
+      <ion-list>
+        <h2>INTERVENÇÃO</h2>
+    
+        <ion-item>
+          <ion-label>Orientar o cuidador a manter ciclo normal de sono (não dormir de dia, dormir a noite)</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR8_A"></ion-checkbox>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Indicar técnicas de relaxamento, e redução da cafeína.</ion-label>
+          <ion-checkbox [(ngModel)]="IIIR8_B"></ion-checkbox>
+        </ion-item>
+        
+        <ion-item>
+            <ion-label>Orientar sobre a importância do sono </ion-label>
+            <ion-checkbox [(ngModel)]="IIIR8_C"></ion-checkbox>
+          </ion-item>
+
+
+      </ion-list>
+    </div>  
+
+
+  <!----------------------------Intervenção IVR2------------------------------>
+  <div class="myForm" *ngIf="showInter == 1 && question == 11 ">
+      <ion-list>
+        <h2>INTERVENÇÃO</h2>
+    
+        <ion-item>
+          <ion-label>Verificar se o idoso apresenta sinais de abuso emocional </ion-label>
+          <ion-checkbox [(ngModel)]="IVR2_A"></ion-checkbox>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Identificar cuidadores que apresentam saúde física ou mental prejudicada</ion-label>
+          <ion-checkbox [(ngModel)]="IVR2_B"></ion-checkbox>
+        </ion-item>
+
+      </ion-list>
+  </div>
+
+
+  <div class="pos-center">
+      <button *ngIf="question == 13" color="danger" class="btn-save" (click)="saveForm()">Salvar</button>
+      <button *ngIf="question != 13" class="btn-save" (click)="nextQuestion()">Próxima</button>
+  </div>
+
+</ion-content>

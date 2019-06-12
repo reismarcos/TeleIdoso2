@@ -90,7 +90,13 @@ export class HomePage {
     this.router.navigate(['/formulario']);
   }
 
-  // public goToPacientesPage(){
-  //   this.navCtrl.navigateRoot('PacientesListPage');
-  // }
+  public addFormSemanal(){
+    this.router.navigate(['/form-semanal']);
+  }
+
+  public goToForms(){
+    this.router.navigate(['/cuidadores-list']);
+  }
+
+
 }

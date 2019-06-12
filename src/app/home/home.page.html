@@ -18,23 +18,29 @@
         <ion-col></ion-col>
       </ion-row>
       <ion-row>
-        <ion-col></ion-col>
-        <ion-col></ion-col>
         <ion-col>
-          <ion-button fill="outline" (click)="addPaciente()">
-              <ion-icon name="add-circle-outline"></ion-icon>
+          <ion-button class ="btn-home btn-left" fill="outline" (click)="addPaciente()">
             Adicionar Paciente
           </ion-button>
         </ion-col>
-        <ion-col></ion-col>
         <ion-col>
-          <ion-button fill="outline" (click)="addForm()">
-            <ion-icon name="add-circle-outline"></ion-icon>
-            Preencher Formulário
+          <ion-button class ="btn-home btn-right" fill="outline" (click)="addForm()">
+            Preencher Formulário Inicial
           </ion-button>
         </ion-col>
-        <ion-col></ion-col>
-        <ion-col></ion-col>
+
+        <ion-col>
+          <ion-button class ="btn-home btn-left" fill="outline" (click)="addFormSemanal()">
+              Preencher Formulário Semanal
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-button class ="btn-home btn-right" fill="outline" (click)="goToForms()">
+              Visualizar Formulários
+          </ion-button>
+        </ion-col>
+
       </ion-row>
   </div>
 

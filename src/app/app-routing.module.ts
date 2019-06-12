@@ -12,6 +12,8 @@ const routes: Routes = [
   { path: 'form-details/:id', loadChildren: './form-details/form-details.module#FormDetailsPageModule' },
   { path: 'formulario/:id', loadChildren: './formulario/formulario.module#FormularioPageModule' },
   { path: 'cuidadores-list', loadChildren: './cuidadores-list/cuidadores-list.module#CuidadoresListPageModule' },
+  { path: 'form-semanal', loadChildren: './form-semanal/form-semanal.module#FormSemanalPageModule' },
+
 
 
 ];
