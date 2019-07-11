@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyCDuq6Jn1kfXneBIqbp5MMdjjXwpaty0CM",
-    authDomain: "teleidoso-e536f.firebaseapp.com",
-    databaseURL: "https://teleidoso-e536f.firebaseio.com",
-    projectId: "teleidoso-e536f",
-    storageBucket: "teleidoso-e536f.appspot.com",
-    messagingSenderId: "916317532320",
-    appId: "1:916317532320:web:e68a6bf6c3b3512c"
+    apiKey: "AIzaSyB0uHvabUJYcOQXw8ad9URu3guRzdmbfG4",
+    authDomain: "appteleidoso.firebaseapp.com",
+    databaseURL: "https://appteleidoso.firebaseio.com",
+    projectId: "appteleidoso",
+    storageBucket: "appteleidoso.appspot.com",
+    messagingSenderId: "661533482228",
+    appId: "1:661533482228:web:86734902913066c0"
   }
 };
